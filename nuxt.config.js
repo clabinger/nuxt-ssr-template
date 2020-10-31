@@ -1,3 +1,9 @@
+const dev = process.env.DEPLOY_ENV !== 'prod'
+
+require('dotenv').config({
+  path: dev ? '.env' : 'prod.env'
+})
+
 export default {
   // Global page headers (https://go.nuxtjs.dev/config-head)
   head: {

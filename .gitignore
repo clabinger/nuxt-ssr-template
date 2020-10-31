@@ -95,3 +95,6 @@ sw.*
 
 # SSR
 /public
+
+# Environment configuration
+prod.env

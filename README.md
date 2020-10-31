@@ -148,6 +148,35 @@
 
         exports.nuxtssr = require('./nuxtssr').default
 
+### Set up environment configuration
+
+1. Create the following files:
+
+				# Development/Test environment
+				.env
+
+				# Production environment
+				prod.env
+
+				# Insert same variables here with example values
+				example.env
+
+2. Add the following to `.gitignore`
+
+        # Environment configuration
+        prod.env
+
+3. Run `yarn add -D dotenv`
+
+4. Insert the following at the top of `nuxt.config.js`:
+
+				const dev = process.env.DEPLOY_ENV !== 'prod'
+
+				require('dotenv').config({
+					path: dev ? '.env' : 'prod.env'
+				})
+
+
 ### Test configuration
 
         # Install dependencies
