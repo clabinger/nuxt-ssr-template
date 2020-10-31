@@ -39,5 +39,14 @@ export default {
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
   build: {
-  }
+    // Static URLs should be generated with '/assets/' at the beginning of the path instead of '/_nuxt/',
+    // so that they will be loaded from the CDN via Firebase Hosting, and not processed through the SSR cloud function
+    publicPath: '/assets/'
+  },
+
+  // Nuxt directories are in /src instead of in the root directory
+  srcDir: 'src',
+
+  // Compiled app needs to be in /functions so that Cloud Functions has access to it (to do the server-side rendering)
+  buildDir: 'functions/.nuxt'
 }
