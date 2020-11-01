@@ -161,12 +161,14 @@
         # Insert same variables here with example values
         example.env
 
-2. Add the following to `.gitignore`
+2. Add the following to `.gitignore`:
 
         # Environment configuration
         prod.env
 
-3. Run `yarn add -D dotenv`
+3. Install __dotenv__:
+
+        `yarn add -D dotenv`
 
 4. Insert the following at the top of `nuxt.config.js`:
 
