@@ -232,11 +232,11 @@
 
 ### Test configuration
 
-        # Install dependencies
-        yarn install
-        
-        # Test locally
-        yarn build:serve
+    # Install dependencies
+    yarn install
 
-        # Deploy to test project
-        yarn buildDeploy
+    # Test locally
+    yarn build:serve
+
+    # Deploy to test project
+    yarn buildDeploy
