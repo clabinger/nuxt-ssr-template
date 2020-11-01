@@ -20,7 +20,15 @@ export default {
 
   // Global CSS (https://go.nuxtjs.dev/config-css)
   css: [
+    // Main scss code to compile
+    '~assets/scss/main.scss'
   ],
+  styleResources: {
+    scss: [
+      // Expose sass variables in Vue components
+      '~assets/scss/variables.scss'
+    ]
+  },
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
@@ -38,7 +46,12 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/buefy
-    'nuxt-buefy',
+    // Set css to false to not include default buefy CSS (we will compile our own)
+    ['nuxt-buefy', { css: false }],
+
+    // Expose variables to components automatically. See styleResources configuration above
+    '@nuxtjs/style-resources',
+
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa'
   ],
@@ -47,7 +60,10 @@ export default {
   build: {
     // Static URLs should be generated with '/assets/' at the beginning of the path instead of '/_nuxt/',
     // so that they will be loaded from the CDN via Firebase Hosting, and not processed through the SSR cloud function
-    publicPath: '/assets/'
+    publicPath: '/assets/',
+
+    // Extract CSS to dedicated CSS files in production
+    extractCSS: !dev
   },
 
   // Nuxt directories are in /src instead of in the root directory

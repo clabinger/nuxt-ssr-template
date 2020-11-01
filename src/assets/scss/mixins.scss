@@ -1,0 +1,14 @@
+// Mixins needed in components
+@mixin between($device-min, $device-max) {
+  @media screen and (min-width: $device-min) and (max-width: $device-max - 1px) {
+    @content;
+  }
+}
+
+@mixin serif {
+  font-family: serif;
+}
+
+@mixin sans-serif {
+  font-family: sans-serif;
+}

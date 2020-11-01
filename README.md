@@ -178,6 +178,57 @@
           path: dev ? '.env' : 'prod.env'
         })
 
+### Set up styles
+
+1. Install __node-sass__ and __sass-loader__. At the time of this writing, Bulma is only compatible with `node-sass@^4.0.0`.
+
+        yarn add -D node-sass@^4.0.0 sass-loader
+
+2. Install __@nuxtjs/style-resources__ so that sass variables will be exposed to Vue components:
+
+        yarn add -D @nuxtjs/style-resources
+
+3. Add the following files to `src/assets/scss/`:
+
+        # Override bulma/buefy variables that do not depend on bulma variables
+        # Import Bulma utilities (includes variables)
+        # Override bulma/buefy variables that depend on bulma variables
+        # Import mixins.scss
+        variables.scss
+
+        # Define mixins needed in components
+        mixins.scss
+
+        # Import variables.scss
+        # Import bulma and buefy source files needed for this app
+        buefy-custom.scss
+
+        # Import buefy-custom.scss
+        # Define additional global styles
+        main.scss        
+
+4. Set the following in `nuxt.config.js` to load sass resources:
+
+        css: [
+          // Main scss code to compile
+          '~assets/scss/main.scss'
+        ],
+        styleResources: {
+          scss: [
+            // Expose sass variables in Vue components
+            '~assets/scss/variables.scss'
+          ]
+        },
+        modules: [
+          // Set css to false to not include default buefy CSS (we will compile our own)
+          ['nuxt-buefy', { css: false }],
+          // Expose variables to components automatically. See styleResources configuration above
+          '@nuxtjs/style-resources'
+        ],
+        build: {
+          // Extract CSS to dedicated CSS files in production
+          extractCSS: !dev
+        }
 
 ### Test configuration
 
