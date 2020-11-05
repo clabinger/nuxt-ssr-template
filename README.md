@@ -270,6 +270,58 @@
     }
     ```
 
+### Integrate Firebase
+
+1. Install packages:
+
+    ```sh
+    yarn add firebase @nuxtjs/firebase
+    ```
+
+2. Add example Firebase configuration values to `example.env`:
+
+    ```sh
+    # Firebase configuration
+    # Get it from https://console.firebase.google.com
+    # ~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+    FIREBASE_CONFIG_API_KEY=SoMeLeTtErS-MOreLetTErSAnDNumb3r5
+    FIREBASE_CONFIG_AUTH_DOMAIN=auth-domain.example.com
+    FIREBASE_CONFIG_DATABASE_URL=https://my-project.firebaseio.com
+    FIREBASE_CONFIG_PROJECT_ID=my-project
+    FIREBASE_CONFIG_STORAGE_BUCKET=my-project.appspot.com
+    FIREBASE_CONFIG_MESSAGING_SENDER_ID=012345678901
+    FIREBASE_APP_ID=1:123456789012:web:abc123abc123abc123abc1
+    ```
+
+
+3. Add real Firebase configuration values in `.env` and `prod.env`
+
+4. Add `@nuxtjs/firebase` configuration to `nuxt.config.js`:
+
+    ```javascript
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.FIREBASE_CONFIG_API_KEY || '',
+          authDomain: process.env.FIREBASE_CONFIG_AUTH_DOMAIN || '',
+          databaseURL: process.env.FIREBASE_CONFIG_DATABASE_URL || '',
+          projectId: process.env.FIREBASE_CONFIG_PROJECT_ID || '',
+          storageBucket: process.env.FIREBASE_CONFIG_STORAGE_BUCKET || '',
+          messagingSenderId: process.env.FIREBASE_CONFIG_MESSAGING_SENDER_ID || '',
+          appId: process.env.FIREBASE_APP_ID || '',
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID || ''
+        },
+        services: {
+          auth: true,
+          firestore: true,
+          functions: true,
+          storage: true
+        },
+        onFirebaseHosting: true
+      }
+    ]
+    ```
 
 ### Test configuration
 

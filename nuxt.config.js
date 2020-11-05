@@ -53,7 +53,30 @@ export default {
     '@nuxtjs/style-resources',
 
     // https://go.nuxtjs.dev/pwa
-    '@nuxtjs/pwa'
+    '@nuxtjs/pwa',
+
+    [
+      '@nuxtjs/firebase',
+      {
+        config: {
+          apiKey: process.env.FIREBASE_CONFIG_API_KEY || '',
+          authDomain: process.env.FIREBASE_CONFIG_AUTH_DOMAIN || '',
+          databaseURL: process.env.FIREBASE_CONFIG_DATABASE_URL || '',
+          projectId: process.env.FIREBASE_CONFIG_PROJECT_ID || '',
+          storageBucket: process.env.FIREBASE_CONFIG_STORAGE_BUCKET || '',
+          messagingSenderId: process.env.FIREBASE_CONFIG_MESSAGING_SENDER_ID || '',
+          appId: process.env.FIREBASE_APP_ID || '',
+          measurementId: process.env.FIREBASE_MEASUREMENT_ID || ''
+        },
+        services: {
+          auth: true,
+          firestore: true,
+          functions: true,
+          storage: true
+        },
+        onFirebaseHosting: true
+      }
+    ]
   ],
 
   // Build Configuration (https://go.nuxtjs.dev/config-build)
