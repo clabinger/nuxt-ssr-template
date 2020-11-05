@@ -43,9 +43,11 @@
 
 5. Add the following to `.gitignore`:
 
-        # Firebase
-        /.firebase
-        .firebaserc
+    ```sh
+    # Firebase
+    /.firebase
+    .firebaserc
+    ```
 
 7. Update `.firebaserc`
     * Run `cp .firebaserc example.firebaserc`
@@ -58,185 +60,226 @@
 
 2. Add the following to `.gitignore`:
 
-        # SSR
-        /public
+    ```sh
+    # SSR
+    /public
+    ```
 
 3. Add the following to `functions/.gitignore`:
-      
-        # functions/package.json is generated at build time
-        /package.json
+    
+    ```sh
+    # functions/package.json is generated at build time
+    /package.json
+    ```
 
 4. Use `yarn` instead of `npm` in `firebase.json`:
         
-        "functions": {
-          "predeploy": [
-            "yarn --prefix \"$RESOURCE_DIR\" lint"
-          ]
-        }
+    ```json
+    "functions": {
+      "predeploy": [
+        "yarn --prefix \"$RESOURCE_DIR\" lint"
+      ]
+    }
+    ```
 
 5. In `firebase.json`, add:
 
-        "hosting": {
-          "rewrites": [
-            {
-              "source": "**",
-              "function": "nuxtssr"
-            }
-          ]
+    ```json
+    "hosting": {
+      "rewrites": [
+        {
+          "source": "**",
+          "function": "nuxtssr"
         }
+      ]
+    }
+    ```
 
 6. Set the following in `nuxt.config.js`:
 
-        build: {
-          // Static URLs should be generated with '/assets/' at the beginning of the path instead of '/_nuxt/',
-          // so that they will be loaded from the CDN via Firebase Hosting, and not processed through the SSR cloud function
-          publicPath: '/assets/'
-        },
+    ```javascript
+    build: {
+      // Static URLs should be generated with '/assets/' at the beginning of the path instead of '/_nuxt/',
+      // so that they will be loaded from the CDN via Firebase Hosting, and not processed through the SSR cloud function
+      publicPath: '/assets/'
+    },
 
-        // Nuxt directories are in /src instead of in the root directory
-        srcDir: 'src',
+    // Nuxt directories are in /src instead of in the root directory
+    srcDir: 'src',
 
-        // Compiled app needs to be in /functions so that Cloud Functions has access to it (to do the server-side rendering)
-        buildDir: 'functions/.nuxt'
+    // Compiled app needs to be in /functions so that Cloud Functions has access to it (to do the server-side rendering)
+    buildDir: 'functions/.nuxt'
+    ```
 
 7. Add the following scripts to `package.json`:
 
-        "postinstall": "node ./functions_install.js",
-        "precommit": "yarn lint",
-        "prebuild": "yarn clean && yarn lint",
-        "postbuild": "yarn copyassets && yarn copystatic",
-        "clean": "yarn clean:public && yarn clean:functions",
-        "clean:public": "mkdir -p ./public && rimraf ./public/*",
-        "clean:functions": "mkdir -p ./functions/.nuxt && rimraf ./functions/.nuxt/*",
-        "copyassets": "mkdir -p ./public/assets && cp -R ./functions/.nuxt/dist/client/* ./public/assets",
-        "copystatic": "cp -R ./src/static/* ./public",
-        "serve": "DEBUG=nuxt:* firebase serve --only hosting,functions -p 3000",
-        "build:serve": "yarn build && yarn serve",
-        "deploy": "firebase deploy -P default",
-        "buildDeploy": "yarn build && yarn deploy",
-        "buildDeploy:prod": "DEPLOY_ENV=prod yarn build && firebase deploy -P prod"
+    ```json
+    "postinstall": "node ./functions_install.js",
+    "precommit": "yarn lint",
+    "prebuild": "yarn clean && yarn lint",
+    "postbuild": "yarn copyassets && yarn copystatic",
+    "clean": "yarn clean:public && yarn clean:functions",
+    "clean:public": "mkdir -p ./public && rimraf ./public/*",
+    "clean:functions": "mkdir -p ./functions/.nuxt && rimraf ./functions/.nuxt/*",
+    "copyassets": "mkdir -p ./public/assets && cp -R ./functions/.nuxt/dist/client/* ./public/assets",
+    "copystatic": "cp -R ./src/static/* ./public",
+    "serve": "DEBUG=nuxt:* firebase serve --only hosting,functions -p 3000",
+    "build:serve": "yarn build && yarn serve",
+    "deploy": "firebase deploy -P default",
+    "buildDeploy": "yarn build && yarn deploy",
+    "buildDeploy:prod": "DEPLOY_ENV=prod yarn build && firebase deploy -P prod"
+    ```
 
 8. Add the following sections to `package.json`. Install these packages with `yarn` normally first, then move the lines to this section (the versions listed here are not real).
 
-        "firebaseFunctionsDependencies": {
-          "firebase-admin": "~0.0.0",
-          "firebase-functions": "^0.0.0"
-        },
-        "firebaseFunctionsExcludeDependencies": [
-        ]
+    ```json
+    "firebaseFunctionsDependencies": {
+      "firebase-admin": "~0.0.0",
+      "firebase-functions": "^0.0.0"
+    },
+    "firebaseFunctionsExcludeDependencies": [
+    ]
+    ```
 
 9. Set the node version in `package.json`:
 
-        "engines": {
-          "node": "12"
-        }
+    ```json
+    "engines": {
+      "node": "12"
+    }
+    ```
 
 10. Set the node version in `firebase.json`:
 
-        "functions": {
-          "runtime": "nodejs12"
-        },
+    ```json
+    "functions": {
+      "runtime": "nodejs12"
+    },
+    ```
 
 11. Add the following files in the root directory:
 
-        functions_install.js
-        generate_functions_package_json.js
+    ```
+    functions_install.js
+    generate_functions_package_json.js
+    ```
 
 12. Add the `nuxtssr` function: `functions/nuxtssr.js`
 
 13. Export the `nuxtssr` function in `functions/index.js` (remove all of the default content):
 
-        exports.nuxtssr = require('./nuxtssr').default
+    ```javascript
+    exports.nuxtssr = require('./nuxtssr').default
+    ```
 
 ### Set up environment configuration
 
 1. Create the following files:
 
-        # Development/Test environment
-        .env
+    ```sh
+    # Development/Test environment
+    .env
 
-        # Production environment
-        prod.env
+    # Production environment
+    prod.env
 
-        # Insert same variables here with example values
-        example.env
+    # Insert same variables here with example values
+    example.env
+    ```
 
 2. Add the following to `.gitignore`:
 
-        # Environment configuration
-        prod.env
+    ```sh
+    # Environment configuration
+    prod.env
+    ```
 
 3. Install __dotenv__:
 
-        `yarn add -D dotenv`
+    ```sh
+    yarn add -D dotenv
+    ```
 
 4. Insert the following at the top of `nuxt.config.js`:
 
-        const dev = process.env.DEPLOY_ENV !== 'prod'
+    ```javascript
+    const dev = process.env.DEPLOY_ENV !== 'prod'
 
-        require('dotenv').config({
-          path: dev ? '.env' : 'prod.env'
-        })
+    require('dotenv').config({
+      path: dev ? '.env' : 'prod.env'
+    })
+    ```
 
 ### Set up styles
 
 1. Install __node-sass__ and __sass-loader__. At the time of this writing, Bulma is only compatible with `node-sass@^4.0.0`.
 
-        yarn add -D node-sass@^4.0.0 sass-loader
+    ```sh
+    yarn add -D node-sass@^4.0.0 sass-loader
+    ```
 
 2. Install __@nuxtjs/style-resources__ so that sass variables will be exposed to Vue components:
 
-        yarn add -D @nuxtjs/style-resources
+    ```sh
+    yarn add -D @nuxtjs/style-resources
+    ```
 
 3. Add the following files to `src/assets/scss/`:
 
-        # Override bulma/buefy variables that do not depend on bulma variables
-        # Import Bulma utilities (includes variables)
-        # Override bulma/buefy variables that depend on bulma variables
-        # Import mixins.scss
-        variables.scss
+    ```sh
+    # Override bulma/buefy variables that do not depend on bulma variables
+    # Import Bulma utilities (includes variables)
+    # Override bulma/buefy variables that depend on bulma variables
+    # Import mixins.scss
+    variables.scss
 
-        # Define mixins needed in components
-        mixins.scss
+    # Define mixins needed in components
+    mixins.scss
 
-        # Import variables.scss
-        # Import bulma and buefy source files needed for this app
-        buefy-custom.scss
+    # Import variables.scss
+    # Import bulma and buefy source files needed for this app
+    buefy-custom.scss
 
-        # Import buefy-custom.scss
-        # Define additional global styles
-        main.scss        
+    # Import buefy-custom.scss
+    # Define additional global styles
+    main.scss
+    ```
 
 4. Set the following in `nuxt.config.js` to load sass resources:
 
-        css: [
-          // Main scss code to compile
-          '~assets/scss/main.scss'
-        ],
-        styleResources: {
-          scss: [
-            // Expose sass variables in Vue components
-            '~assets/scss/variables.scss'
-          ]
-        },
-        modules: [
-          // Set css to false to not include default buefy CSS (we will compile our own)
-          ['nuxt-buefy', { css: false }],
-          // Expose variables to components automatically. See styleResources configuration above
-          '@nuxtjs/style-resources'
-        ],
-        build: {
-          // Extract CSS to dedicated CSS files in production
-          extractCSS: !dev
-        }
+    ```javascript
+    css: [
+      // Main scss code to compile
+      '~assets/scss/main.scss'
+    ],
+    styleResources: {
+      scss: [
+        // Expose sass variables in Vue components
+        '~assets/scss/variables.scss'
+      ]
+    },
+    modules: [
+      // Set css to false to not include default buefy CSS (we will compile our own)
+      ['nuxt-buefy', { css: false }],
+      // Expose variables to components automatically. See styleResources configuration above
+      '@nuxtjs/style-resources'
+    ],
+    build: {
+      // Extract CSS to dedicated CSS files in production
+      extractCSS: !dev
+    }
+    ```
+
 
 ### Test configuration
 
-    # Install dependencies
-    yarn install
+```sh
+# Install dependencies
+yarn install
 
-    # Test locally
-    yarn build:serve
+# Test locally
+yarn build:serve
 
-    # Deploy to test project
-    yarn buildDeploy
+# Deploy to test project
+yarn buildDeploy
+```
