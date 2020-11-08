@@ -313,7 +313,11 @@
           measurementId: process.env.FIREBASE_MEASUREMENT_ID || ''
         },
         services: {
-          auth: true,
+          auth: {
+            initialize: {
+              onAuthStateChangedAction: 'auth/loadUser'
+            }
+          },
           firestore: true,
           functions: true,
           storage: true
@@ -322,6 +326,32 @@
       }
     ]
     ```
+
+### Set up auth store
+
+1. Add `nuxt-vuex-router-sync` for handling `#sign-in` URL hash:
+
+    ```sh
+    yarn add nuxt-vuex-router-sync
+    ```
+
+    ```javascript
+    // nuxt.config.js
+    modules: [
+      'nuxt-vuex-router-sync',
+    ]
+    ```
+
+2. Add `Object.pick` function in `src/plugins/helpers.js`. Register the plugin:
+
+    ```javascript
+    // nuxt.config.js
+    plugins: [
+      { src: '~/plugins/helpers.js' }
+    ]
+    ```
+
+3. Add auth store in `src/store/auth.js`
 
 ### Test configuration
 

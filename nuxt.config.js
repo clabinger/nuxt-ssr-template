@@ -32,6 +32,7 @@ export default {
 
   // Plugins to run before rendering page (https://go.nuxtjs.dev/config-plugins)
   plugins: [
+    { src: '~/plugins/helpers.js' }
   ],
 
   // Auto import components (https://go.nuxtjs.dev/config-components)
@@ -55,6 +56,8 @@ export default {
     // https://go.nuxtjs.dev/pwa
     '@nuxtjs/pwa',
 
+    'nuxt-vuex-router-sync',
+
     [
       '@nuxtjs/firebase',
       {
@@ -69,7 +72,11 @@ export default {
           measurementId: process.env.FIREBASE_MEASUREMENT_ID || ''
         },
         services: {
-          auth: true,
+          auth: {
+            initialize: {
+              onAuthStateChangedAction: 'auth/loadUser'
+            }
+          },
           firestore: true,
           functions: true,
           storage: true
