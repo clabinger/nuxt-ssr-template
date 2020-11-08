@@ -187,20 +187,28 @@
     example.env
     ```
 
-2. Add the following to `.gitignore`:
+2. Add app configuration values to `.env` files:
+
+    ```sh
+    APP_TITLE=My Project
+    APP_DESCRIPTION=My Project Description
+    APP_DOMAIN=my-project.example.com
+    ```
+
+3. Add the following to `.gitignore`:
 
     ```sh
     # Environment configuration
     prod.env
     ```
 
-3. Install __dotenv__:
+4. Install __dotenv__:
 
     ```sh
     yarn add -D dotenv
     ```
 
-4. Insert the following at the top of `nuxt.config.js`:
+5. Insert the following at the top of `nuxt.config.js`:
 
     ```javascript
     const dev = process.env.DEPLOY_ENV !== 'prod'
@@ -208,6 +216,17 @@
     require('dotenv').config({
       path: dev ? '.env' : 'prod.env'
     })
+    ```
+
+6. Update the `head` configuration in `nuxt.config.js` to reference the `APP_TITLE` and `APP_DESCRIPTION` environment variables:
+
+    ```javascript
+    head: {
+      title: process.env.APP_TITLE,
+      meta: [
+        { hid: 'description', name: 'description', content: process.env.APP_DESCRIPTION }
+      ]
+    }
     ```
 
 ### Set up styles
