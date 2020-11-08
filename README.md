@@ -16,6 +16,49 @@
     * Continuous integration: __None__
     * Version control system: __Git__
 
+### Remove nuxt filler content and README files
+
+1. Delete files
+  
+    ```sh
+    rm assets/README.md
+    rm components/README.md
+    rm layouts/README.md
+    rm middleware/README.md
+    rm pages/README.md
+    rm plugins/README.md
+    rm static/README.md
+    rm store/README.md
+    rm components/Card.vue
+    rm components/Logo.vue
+    rm pages/inspire.vue
+    rm assets/buefy.png
+    ```
+
+2. Replace nuxt filler content with base content:
+
+    ```html
+    <!-- layouts/default.vue -->
+    <template>
+      <div>
+        <div class="container">
+          <nuxt />
+        </div>
+      </div>
+    </template>
+    ```
+
+    ```html
+    <!-- pages/index.vue -->
+    <template>
+      <section class="section">
+        <h1>
+          Home
+        </h1>
+      </section>
+    </template>
+    ```
+
 ### Initialize Firebase
 
 1. Create projects in Firebase console (create a __prod__ project and a __test__ project)
