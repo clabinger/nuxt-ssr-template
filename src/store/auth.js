@@ -32,7 +32,7 @@ export const actions = {
     const provider = method === 'facebook' ? new this.$fireModule.auth.FacebookAuthProvider() : new this.$fireModule.auth.GoogleAuthProvider()
     try {
       await this.$fire.auth.signInWithPopup(provider)
-      // commit('closeAllMenus', null, { root: true }) // TODO implement menus
+      commit('closeAllMenus', null, { root: true })
     } catch (error) {
       commit('setError', 'There was an error processing your sign in. Please try again.')
     }
@@ -41,7 +41,7 @@ export const actions = {
   signOut ({ commit, dispatch }) {
     this.$fire.auth.signOut()
       .finally(() => {
-        // commit('closeAllMenus', null, { root: true }) // TODO implement menus
+        commit('closeAllMenus', null, { root: true })
         dispatch('clearSignInErrors')
         this.$router.push({ path: '/' })
       })
@@ -78,7 +78,7 @@ export const actions = {
       this.app.router.replace(rootState.route.path)
     }
 
-    // commit('closeAllMenus', null, { root: true }) // TODO implement menus
+    commit('closeAllMenus', null, { root: true })
     commit('setLoaded', true)
   }
 }

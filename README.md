@@ -413,6 +413,15 @@
 
 3. Add auth store in `src/store/auth.js`
 
+### Set up root store and pages store
+
+1. Add stores:
+
+    ```sh
+    src/store/index.js
+    src/store/pages.js
+    ```
+
 ### Test configuration
 
 ```sh
