@@ -59,6 +59,13 @@
     </template>
     ```
 
+3. Create similar placeholder pages:
+
+    ```sh
+    pages/about.vue
+    pages/private.vue
+    ```
+
 ### Initialize Firebase
 
 1. Create projects in Firebase console (create a __prod__ project and a __test__ project)
