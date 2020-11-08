@@ -1,11 +1,9 @@
-# visuari
-
-## Devops setup
+# ssr-nuxt-firebase-buefy Project Template
 
 ### Initialize Nuxt
 
-1. Run `yarn create nuxt-app visuari` with the following options:
-    * Project name: __visuari__
+1. Run `yarn create nuxt-app my-project` with the following options:
+    * Project name: (leave default)
     * Programming language: __JavaScript__
     * Package manager: __Yarn__
     * UI framework: __Buefy__
