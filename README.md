@@ -438,6 +438,10 @@
     </script>
     ```
 
+### Add page metadata to `<head>` tag
+
+1. Add `head()` function and associated vuex state (using `mapState` and `mapGetters`) to `src/layouts/default.vue`.
+
 ### Test configuration
 
 ```sh
