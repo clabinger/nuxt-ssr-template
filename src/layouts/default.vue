@@ -5,3 +5,11 @@
     </div>
   </div>
 </template>
+
+<script>
+export default {
+  middleware: [
+    'general'
+  ]
+}
+</script>

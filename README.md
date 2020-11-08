@@ -422,6 +422,22 @@
     src/store/pages.js
     ```
 
+### Add middleware
+
+1. Add file `src/middleware/general.js`.
+
+2. Register middleware in `src/layouts/default.vue`:
+
+    ```html
+    <script>
+    export default {
+      middleware: [
+        'general'
+      ]
+    }
+    </script>
+    ```
+
 ### Test configuration
 
 ```sh
