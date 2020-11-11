@@ -449,6 +449,17 @@
 
 1. Add `head()` function and associated vuex state (using `mapState` and `mapGetters`) to `src/layouts/default.vue`.
 
+### Add logo artwork
+
+1. Add files:
+
+    ```sh
+    src/static/logo.svg
+    src/static/logo-animated.svg
+    src/static/logo-title.png
+    src/static/social-image.png
+    ```
+
 ### Test configuration
 
 ```sh

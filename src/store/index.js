@@ -4,7 +4,7 @@ export const state = function () {
   return {
     websiteTitle: process.env.APP_TITLE,
     websiteUrl: url,
-    websiteSocialImage: url + '/static/social_image.png',
+    websiteSocialImage: url + '/static/social-image.png',
     navMenu: false,
     navProfileMenu: false
   }
