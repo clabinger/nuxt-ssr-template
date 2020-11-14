@@ -41,7 +41,8 @@ export const getters = {
   },
   publicLinks: state => state.pages.filter(page => page.linkIsPublic || page.isPublic),
   visibleLinks (state, getters, rootState) {
-    if (rootState.auth.user) {
+    // Client-side DOM must match SSR output until after hydration is complete
+    if (rootState.hydrated && rootState.auth.user) {
       return state.pages
     } else {
       return getters.publicLinks

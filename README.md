@@ -441,6 +441,14 @@
     src/store/pages.js
     ```
 
+### Add `hydration` flag
+
+Client-side DOM must match SSR DOM until after hydration is complete. Otherwise, Nuxt will perform a full client-side render, removing one benefit of SSR. Elements that are only rendered on the client, or elements rendered differently on the client, should wait until `hydrated === true` before rendering.
+
+1. Add `hydrated` to the `state` in the root store, with the `setHydrated` mutation.
+
+2. Map `hydrated` and `setHydrated` to the default layout using `mapState` and `mapMutations`. Execute the `setHydrated` mutation to set `hydrated = true` in the `mounted` hook.
+
 ### Add middleware
 
 1. Add file `src/middleware/general.js`.

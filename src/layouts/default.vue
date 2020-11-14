@@ -7,14 +7,15 @@
 </template>
 
 <script>
-import { mapState, mapGetters } from 'vuex'
+import { mapState, mapGetters, mapMutations } from 'vuex'
 
 export default {
   computed: {
     ...mapState([
       'websiteTitle',
       'websiteUrl',
-      'websiteSocialImage'
+      'websiteSocialImage',
+      'hydrated'
     ]),
     ...mapGetters('pages', [
       'isPublic',
@@ -25,6 +26,15 @@ export default {
   middleware: [
     'general'
   ],
+  mounted () {
+    // Client-side DOM must match SSR output until after hydration is complete
+    this.setHydrated(true)
+  },
+  methods: {
+    ...mapMutations([
+      'setHydrated'
+    ])
+  },
   head () {
     return {
       title: this.headTitle,

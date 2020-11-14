@@ -6,7 +6,10 @@ export const state = function () {
     websiteUrl: url,
     websiteSocialImage: url + '/social-image.png',
     navMenu: false,
-    navProfileMenu: false
+    navProfileMenu: false,
+
+    // Client-side DOM must match SSR output until after hydration is complete. Set to true in mounted() hook in layout
+    hydrated: false
   }
 }
 
@@ -26,5 +29,8 @@ export const mutations = {
   },
   closeNavProfileMenu (state) {
     state.navProfileMenu = false
+  },
+  setHydrated (state, payload) {
+    state.hydrated = payload
   }
 }
