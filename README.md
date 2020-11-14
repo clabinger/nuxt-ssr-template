@@ -277,6 +277,18 @@
     }
     ```
 
+7. Update `nuxt.config.js` to inject necessary environment variables into the client app. 
+    
+    Do not inject secret environment variables that are not intended for use in a client app.
+
+    ```javascript
+    env: {
+      APP_TITLE: process.env.APP_TITLE,
+      APP_DESCRIPTION: process.env.APP_DESCRIPTION,
+      APP_DOMAIN: process.env.APP_DOMAIN
+    }
+    ```
+
 ### Set up styles
 
 1. Install __node-sass__ and __sass-loader__. At the time of this writing, Bulma is only compatible with `node-sass@^4.0.0`.
