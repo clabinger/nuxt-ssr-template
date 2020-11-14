@@ -100,5 +100,11 @@ export default {
   srcDir: 'src',
 
   // Compiled app needs to be in /functions so that Cloud Functions has access to it (to do the server-side rendering)
-  buildDir: 'functions/.nuxt'
+  buildDir: 'functions/.nuxt',
+
+  env: {
+    APP_TITLE: process.env.APP_TITLE,
+    APP_DESCRIPTION: process.env.APP_DESCRIPTION,
+    APP_DOMAIN: process.env.APP_DOMAIN
+  }
 }
