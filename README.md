@@ -478,6 +478,7 @@ Client-side DOM must match SSR DOM until after hydration is complete. Otherwise,
     src/static/logo-animated.svg
     src/static/logo-title.png
     src/static/social-image.png
+    src/static/favicon.ico
     ```
 
 ### Test configuration
