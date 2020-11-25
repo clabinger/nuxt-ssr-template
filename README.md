@@ -481,6 +481,51 @@ Client-side DOM must match SSR DOM until after hydration is complete. Otherwise,
     src/static/favicon.ico
     ```
 
+### Install Font Awesome icon library
+
+1. Install packages
+
+    ```sh
+    yarn add nuxt-fontawesome
+    yarn add @fortawesome/free-brands-svg-icons
+    yarn add @fortawesome/free-solid-svg-icons
+    ```
+
+2. Update `nuxt.config.js` to integrate with Buefy's icon component and specify which icons are needed:
+
+    ```js
+    modules: [
+      ['nuxt-buefy', 
+        { 
+          materialDesignIcons: false,
+          defaultIconPack: 'fas',
+          defaultIconComponent: 'font-awesome-icon'
+        }
+      ],
+      ['nuxt-fontawesome',
+        {
+          imports: [
+            {
+              set: '@fortawesome/free-brands-svg-icons',
+              icons: ['faGoogle', 'faFacebookF']
+            },
+            {
+              set: '@fortawesome/free-solid-svg-icons',
+              icons: ['faBars', 'faUser', 'faCog', 'faSignOutAlt']
+            }
+          ]
+        }
+      ]
+    ]
+    ```
+
+3. Icons can then be used in components with:
+
+    ```html
+    <b-icon icon="bars" /> <!-- uses default pack "fas"  -->
+    <b-icon pack="fab" icon="google" />
+    ```
+
 ### Add layout/structural components
 
 1. Add container/page layout helpers:

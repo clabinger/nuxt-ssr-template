@@ -28,12 +28,15 @@
     "buildDeploy:prod": "DEPLOY_ENV=prod yarn build && firebase deploy -P prod"
   },
   "dependencies": {
+    "@fortawesome/free-brands-svg-icons": "^5.15.1",
+    "@fortawesome/free-solid-svg-icons": "^5.15.1",
     "@nuxtjs/firebase": "^7.0.0",
     "@nuxtjs/pwa": "^3.0.2",
     "core-js": "^3.6.5",
     "firebase": "^8.0.0",
     "nuxt": "^2.14.6",
     "nuxt-buefy": "^0.4.3",
+    "nuxt-fontawesome": "^0.4.0",
     "nuxt-vuex-router-sync": "^0.0.3"
   },
   "devDependencies": {

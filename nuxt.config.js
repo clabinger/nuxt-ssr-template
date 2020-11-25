@@ -47,8 +47,14 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/buefy
-    // Set css to false to not include default buefy CSS (we will compile our own)
-    ['nuxt-buefy', { css: false }],
+    ['nuxt-buefy', 
+      { 
+        css: false, // Set css to false to not include default buefy CSS (we will compile our own)
+        materialDesignIcons: false,
+        defaultIconPack: 'fas',
+        defaultIconComponent: 'font-awesome-icon'
+      }
+    ],
 
     // Expose variables to components automatically. See styleResources configuration above
     '@nuxtjs/style-resources',
@@ -82,6 +88,20 @@ export default {
           storage: true
         },
         onFirebaseHosting: true
+      }
+    ],
+    ['nuxt-fontawesome', 
+      {
+        imports: [
+          {
+            set: '@fortawesome/free-brands-svg-icons',
+            icons: ['faGoogle', 'faFacebookF']
+          },
+          {
+            set: '@fortawesome/free-solid-svg-icons',
+            icons: ['faBars', 'faUser', 'faCog', 'faSignOutAlt']
+          }
+        ]
       }
     ]
   ],
