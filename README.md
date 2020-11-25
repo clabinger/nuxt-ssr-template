@@ -481,6 +481,35 @@ Client-side DOM must match SSR DOM until after hydration is complete. Otherwise,
     src/static/favicon.ico
     ```
 
+### Add layout/structural components
+
+1. Add container/page layout helpers:
+
+    ```sh
+    src/components/Container.vue
+    src/components/PageContainer.vue
+    ```
+
+2. Update pages to use the `PageContainer` component. For example, `src/pages/index.vue`:
+
+    ```html
+      <template>
+        <PageContainer title="Welcome!">
+          <p>Homepage</p>
+        </PageContainer>
+      </template>
+
+      <script>
+      import PageContainer from '~/components/PageContainer.vue'
+
+      export default {
+        components: {
+          PageContainer
+        }
+      }
+      </script>
+    ```
+
 ### Test configuration
 
 ```sh

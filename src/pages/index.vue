@@ -1,7 +1,15 @@
 <template>
-  <section class="section">
-    <h1>
-      Home
-    </h1>
-  </section>
+  <PageContainer title="Welcome!">
+    <p>Homepage</p>
+  </PageContainer>
 </template>
+
+<script>
+import PageContainer from '~/components/PageContainer.vue'
+
+export default {
+  components: {
+    PageContainer
+  }
+}
+</script>
