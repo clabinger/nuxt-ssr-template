@@ -47,8 +47,8 @@ export default {
   // Modules (https://go.nuxtjs.dev/config-modules)
   modules: [
     // https://go.nuxtjs.dev/buefy
-    ['nuxt-buefy', 
-      { 
+    ['nuxt-buefy',
+      {
         css: false, // Set css to false to not include default buefy CSS (we will compile our own)
         materialDesignIcons: false,
         defaultIconPack: 'fas',
@@ -90,7 +90,7 @@ export default {
         onFirebaseHosting: true
       }
     ],
-    ['nuxt-fontawesome', 
+    ['nuxt-fontawesome',
       {
         imports: [
           {
