@@ -16,7 +16,7 @@
 // @import '~bulma/sass/base/generic.sass';
 // @import '~bulma/sass/base/helpers.sass';
 // @import '~bulma/sass/base/minireset.sass';
-// @import '~bulma/sass/helpers/_all.sass';
+@import '~bulma/sass/helpers/_all.sass';
 // @import '~bulma/sass/helpers/color.sass';
 // @import '~bulma/sass/helpers/float.sass';
 // @import '~bulma/sass/helpers/other.sass';
@@ -25,11 +25,11 @@
 // @import '~bulma/sass/helpers/spacing.sass';
 // @import '~bulma/sass/helpers/typography.sass';
 // @import '~bulma/sass/helpers/visibility.sass';
-// @import '~bulma/sass/layout/_all.sass';
+@import '~bulma/sass/layout/_all.sass';
 // @import '~bulma/sass/layout/footer.sass';
 // @import '~bulma/sass/layout/hero.sass';
-@import '~bulma/sass/layout/section.sass';
-// @import '~bulma/sass/grid/_all.sass';
+// @import '~bulma/sass/layout/section.sass';
+@import '~bulma/sass/grid/_all.sass';
 // @import '~bulma/sass/grid/columns.sass';
 // @import '~bulma/sass/grid/tiles.sass';
 // @import '~bulma/sass/components/_all.sass';
