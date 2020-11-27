@@ -1,15 +1,36 @@
 <template>
-  <div>
-    <div class="container">
-      <nuxt />
+  <div class="fill-window">
+    <div v-show="showMainInterface" class="main-wrap">
+      <div class="main-expand">
+        <div class="main">
+          <Login v-if="showSignIn" />
+          <template v-else>
+            <Navbar />
+            <nuxt />
+          </template>
+        </div>
+      </div>
+      <Footer />
     </div>
+    <Loading v-if="!showMainInterface" :fullpage="true" />
   </div>
 </template>
 
 <script>
 import { mapState, mapGetters, mapMutations } from 'vuex'
 
+import Navbar from '~/components/Navbar.vue'
+import Login from '~/components/Login.vue'
+import Loading from '~/components/Loading.vue'
+import Footer from '~/components/Footer.vue'
+
 export default {
+  components: {
+    Loading,
+    Login,
+    Navbar,
+    Footer
+  },
   computed: {
     ...mapState([
       'websiteTitle',
@@ -21,7 +42,18 @@ export default {
       'isPublic',
       'headTitle',
       'headDescription'
-    ])
+    ]),
+    ...mapState('auth', [
+      'user'
+    ]),
+    ...mapState('auth', {
+      userLoaded: state => state.status.loaded
+    }),
+    ...mapGetters('auth', [
+      'requestedSignIn'
+    ]),
+    showMainInterface: state => state.hydrated && state.userLoaded,
+    showSignIn: state => state.hydrated && !state.user && (!state.isPublic || state.requestedSignIn)
   },
   middleware: [
     'general'
@@ -63,3 +95,25 @@ export default {
   }
 }
 </script>
+
+<style lang="scss" scoped>
+div.main-wrap {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+}
+
+div.main-expand {
+  flex-grow: 1;
+  flex-direction: row;
+  display: flex;
+}
+
+div.main {
+  flex-grow: 1;
+}
+
+.fill-window {
+  height: 100%;
+}
+</style>

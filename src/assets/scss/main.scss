@@ -2,3 +2,7 @@
 @import '~assets/scss/buefy-custom.scss';
 
 // Custom SCSS here
+
+html, body, #__nuxt, #__layout {
+  height: 100%;
+}

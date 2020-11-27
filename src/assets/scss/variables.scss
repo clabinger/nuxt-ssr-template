@@ -1,9 +1,19 @@
 // Bulma/Buefy variable overrides that do not depend on Bulma's variables
 
+$red: #DD4B39;
+$yellow: #fcd467;
+$blue: #547CB8;
+$purple: #7550A6;
+$green: #4C9E57;
+$orange: #E38B19;
+$primary: $blue;
+
 // Bulma's variables files
 @import '~bulma/sass/utilities/_all';
 
 // Bulma/Buefy variable overrides that depend on Bulma's variables
+
+$background-gray: $light;
 
 // Custom mixins needed in components
 @import '~assets/scss/mixins.scss';

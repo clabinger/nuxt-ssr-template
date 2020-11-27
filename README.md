@@ -555,6 +555,45 @@ Client-side DOM must match SSR DOM until after hydration is complete. Otherwise,
       </script>
     ```
 
+3. Add structural component files:
+
+    ```sh
+    src/components/Footer.vue
+    src/components/Loading.vue
+    src/components/Login.vue
+    src/components/Navbar.vue
+    src/mixins/clickoff.js
+    ```
+
+4. Update `src/layouts/default.vue` (see complete file for code):
+
+    * Update the template to use the structural components
+    * Add auth-related mapped state and getters to the `computed` object
+    * Add the `style` tag
+
+5. Include needed `bulma` and `buefy` elements and components in `src/assets/scss/buefy-custom.scss`
+
+    ```scss
+    @import '~bulma/sass/elements/button.sass';
+    @import '~bulma/sass/elements/container.sass';
+    @import '~bulma/sass/elements/content.sass';
+    @import '~bulma/sass/elements/icon.sass';
+    @import '~bulma/sass/elements/notification.sass';
+    @import '~bulma/sass/elements/progress.sass';
+    @import '~buefy/src/scss/components/_icon.scss';
+    @import '~buefy/src/scss/components/_loading.scss';
+    ```
+
+6. Update `src/assets/main.scss` to set main DOM elements to full height. This allows the footer to be at the bottom of the viewport when the page would otherwise be too short to fill the viewport.
+
+    ```scss
+    html, body, #__nuxt, #__layout {
+      height: 100%;
+    }
+    ```
+
+7. Set color variables in `src/assets/scss`
+
 ### Test configuration
 
 ```sh
